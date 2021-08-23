@@ -1,5 +1,6 @@
 <template>
     <div class="login_container">
+        <i v-if="!showLogin" class="el-icon-arrow-left" @click="showLogin = true"></i>
         <div :class="showLogin?'login_box':'register_box'">
             <!-- 头像区域 -->
             <div class="avatar_box">
@@ -257,6 +258,7 @@
                                     type: "error",
                                 });
                             } else {
+                                console.log("xxxx", error)
                                 ElMessage.error({
                                     message: "不明原因导致登陆失败了，请稍后重试下(╥╯^╰╥)",
                                     type: "error",
@@ -347,6 +349,14 @@
         top: 40%;
         /* // 将中心点移到方块的中心 */
         transform: translate(-50%, -50%);
+
+        i {
+            padding: 15px;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
 
         .avatar_box {
             height: 130px;

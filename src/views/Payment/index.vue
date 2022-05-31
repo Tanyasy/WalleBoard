@@ -18,12 +18,12 @@
     <el-button
       type="primary"
       @click="dialogVisible = true"
-    >数据导入<i class="el-icon-upload el-icon--right"></i>
+    >数据导入<i class="Upload el-icon--right"></i>
     </el-button>
     <el-dialog
       title="账单数据导入"
       v-model="dialogVisible"
-      width="30%"
+      width="400px"
     >
       <div class="searchChoice">
         <el-radio
@@ -44,7 +44,7 @@
         :headers="state.headers"
         ref="uploadTarget"
       >
-        <i class="el-icon-upload"></i>
+        <el-icon class="el-icon--upload"><upload-filled /></el-icon>
         <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
         <template #tip>
           <div class="el-upload__tip">
@@ -103,7 +103,7 @@
       v-show="showReset"
       @click="reset"
       type="info"
-      icon="el-icon-refresh-right"
+      icon="RefreshRight"
       circle
     ></el-button>
     <el-divider></el-divider>
@@ -148,7 +148,7 @@
         </div>
       </el-collapse-transition>
       <i
-        class="el-icon-caret-bottom"
+        class="CaretBottom"
         :class="{go:searchVisible , aa :!searchVisible}"
       ></i>
       <span @click="handleSearch">{{ searchVisible?"基本筛选":"高级筛选" }}</span>
@@ -225,12 +225,12 @@
       >
         <template #default="scope">
           <el-button
-            size="mini"
+            size="small"
             @click="handleEdit(scope.$index, scope.row)"
           >编辑
           </el-button>
           <el-button
-            size="mini"
+            size="small"
             type="danger"
             @click="handleDelete(scope.$index, scope.row)"
           >删除
@@ -666,7 +666,7 @@ export default {
 
   .el-upload-dragger {
     width: 28vw;
-    height: 180px;
+    //height: 180px;
   }
 }
 

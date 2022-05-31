@@ -7,12 +7,14 @@
                 <div v-for="(item, index) in routers" :key="index">
                     <div v-if="!item.hidden&&item.meta">
                         <el-menu-item v-if="hasOneShowingChild(item.children)" :index="item.path">
-                            <i :class="item.meta&&item.meta.icon"></i>
+<!--                            <i :class="item.meta&&item.meta.icon"></i>-->
+
+                            <component class="icons" :is="item.meta&&item.meta.icon"/>
                             <template #title>{{ item.meta.title }}</template>
                         </el-menu-item>
-                        <el-submenu v-else :index="item.path">
+                        <el-sub-menu v-else :index="item.path">
                             <template #title>
-                                <i :class="item.meta&&item.meta.icon"></i>
+                                <component class="icons" :is="item.meta&&item.meta.icon"/>
                                 <!-- 用v-show修复导航栏缩进时文字不隐藏的问题 -->
                                 <span v-show='!isCollapse'>{{ item.meta.title }}</span>
                             </template>
@@ -21,7 +23,7 @@
                                           :index="child.path" v-show="!hasOneShowingChild(item.children)">
                                 {{ child.meta.title }}
                             </el-menu-item>
-                        </el-submenu>
+                        </el-sub-menu>
                     </div>
                 </div>
             </el-menu>
@@ -34,7 +36,7 @@
                     <WallE/>
                 </el-main>
                 <div class="back-top">
-                    <el-button v-show="goTopShow" @click="backTop" type="info" icon="el-icon-caret-top"
+                    <el-button v-show="goTopShow" @click="backTop" type="info" icon="CaretTop"
                                circle></el-button>
                 </div>
 
@@ -150,13 +152,20 @@
 
     }
 
+    .icons {
+      width: 24px;
+      height: 18px;
+      margin-right: 5px;
+    }
+
     .el-header {
         /* border-bottom: 1px solid gray; */
+        padding: 0;
         box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
     }
 
-    .el-menu-vertical {
-        border: 0;
+    .el-menu-vertical * {
+        vertical-align: middle;
     }
 
     .el-menu-vertical:not(.el-menu--collapse) {

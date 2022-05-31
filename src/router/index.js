@@ -9,7 +9,7 @@ const routes = [
     redirect: "/home",
     name: 'home',
     component: Home,
-    meta: {title: "首页", icon: "el-icon-location"},
+    meta: {title: "首页", icon: "Location"},
     children: [
       {
         path: '/home',
@@ -24,7 +24,7 @@ const routes = [
     redirect: "/user/index",
     name: 'user',
     component: Home,
-    meta: {title: "用户中心", icon: "el-icon-user-solid"},
+    meta: {title: "用户中心", icon: "UserFilled"},
     children: [
       {
         path: '/user/index',
@@ -47,6 +47,14 @@ const routes = [
         props: true,
         meta: {title: "待办事项"},
         component: () => import('../views/TodoList'),
+      },
+      {
+        path: '/user/scheduler',
+        name: 'scheduler',
+        // 设置props为true是，在用push的时候可以用params传递参数给props
+        props: true,
+        meta: {title: "定时任务"},
+        component: () => import('../views/Scheduler'),
       }
     ]
   },
@@ -55,7 +63,7 @@ const routes = [
     redirect: "/right/role",
     name: 'right',
     component: Home,
-    meta: {title: "权限管理", icon: "el-icon-menu"},
+    meta: {title: "权限管理", icon: "Menu"},
     children: [
       {
         path: '/right/role',

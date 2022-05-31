@@ -14,7 +14,7 @@
             >
                 <template #default="scope">
                     <div>
-                        <i class="el-icon-time"></i>
+                        <i class="Time"></i>
                         <span style="margin-left: 10px">{{ dateFormat(scope.row.create_time) }}</span>
                     </div>
                 </template>
@@ -31,19 +31,21 @@
             <el-table-column
                     prop="codename"
                     label="权限字段"
-                    width="150"
+
             >
                 <template #default="scope">
                     <el-tag>{{scope.row.codename}}</el-tag>
                 </template>
             </el-table-column>
             <el-table-column
-                    align="right"
-                    label="操作"
+          align="right"
+          fixed="right"
+          label="操作"
+          width="150"
             >
                 <template #default="scope">
                     <el-button
-                            size="mini"
+                            size="small"
                             @click="showEditDialog(scope.row)"
                     >编辑
                     </el-button>
@@ -54,7 +56,7 @@
                     >
                         <template #reference>
                             <el-button
-                                    size="mini"
+                                    size="small"
                                     type="danger"
                             >删除
                             </el-button>
@@ -71,14 +73,14 @@
             <div class="edit-name">
                 <span>权限名称: </span>
               <el-input
-                prefix-icon="el-icon-user"
+                prefix-icon="User"
                 v-model="state.editItem.name">
               </el-input>
             </div>
             <div class="edit-code-name">
                 <span>权限字段: </span>
               <el-input
-                prefix-icon="el-icon-user"
+                prefix-icon="User"
                 v-model="state.editItem.codename">
               </el-input>
             </div>

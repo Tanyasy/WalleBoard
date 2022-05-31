@@ -158,7 +158,13 @@
                     "put",
                     "todo_list/" + data.id,
                     JSON.stringify(data)
-                ).then(() => {
+                ).then((response) => {
+                    state.finishedData = response.finishedList;
+                    state.tableData = response.doingList;
+                    state.defaultCheckedList = [];
+                    for (const index in state.finishedData) {
+                        state.defaultCheckedList.push(state.finishedData[index].id)
+                    }
                     // ElMessage.success({
                     //     message: "更新待办事项成功",
                     //     type: "success",
@@ -175,7 +181,7 @@
                     data.status = 0;
                 }
                 updateData(data);
-                getAllData();
+
             }
 
             function handleSelect(data) {
@@ -242,7 +248,7 @@
                     margin-top: 10px;
 
                     .title {
-                        ::v-deep .el-input__inner {
+                        :deep(.el-input__inner) {
                             padding: 0;
                             border: 0;
                             font-size: 19px;
@@ -250,6 +256,7 @@
                             font-weight: 700;
                             outline: none;
                         }
+
                     }
 
                     .el-input {
@@ -260,7 +267,7 @@
                 .descr-div {
                     margin: 0 15px;
 
-                    ::v-deep .el-textarea__inner {
+                    :deep(.el-textarea__inner) {
                         resize: none; // 去掉下拉框
                         padding: 0;
                         border: 0;
@@ -286,7 +293,7 @@
             margin-bottom: 10px;
             width: 97%;
 
-            ::v-deep .el-input__inner {
+            :deep(.el-input__inner) {
                 background-color: rgba(25, 25, 25, 0.08);
             }
         }
@@ -294,7 +301,7 @@
 
 
     .el-tree {
-        ::v-deep .el-tree-node {
+        :deep(.el-tree-node) {
             padding: 7px 0;
 
 
@@ -322,7 +329,7 @@
         .el-tree {
             color: rgb(0, 0, 0, 0.3);
 
-            ::v-deep .el-tree-node {
+            :deep(.el-tree-node) {
                 padding: 7px 0;
 
 

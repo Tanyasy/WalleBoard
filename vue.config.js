@@ -6,32 +6,41 @@ module.exports = {
                 prependData: `@import "~@/assets/scss/style.scss";`
             }
         }
-    },
-    devServer: {
-        port: 8081
     }
 }
 
 const path = require('path')
+console.log(path)
+function resolve(dir) {
+  return path.join(__dirname, '.', dir)
+}
 module.exports = {
-    chainWebpack: config => {
-        const svgRule = config.module.rule('svg')
-        svgRule.uses.clear()
-        svgRule
-            .test(/\.svg$/)
-            .include.add(path.resolve(__dirname, './src/icons')).end()
-            .use('svg-sprite-loader')
-            .loader('svg-sprite-loader')
-            .options({
-                symbolId: 'icon-[name]'
-            })
-        const fileRule = config.module.rule('file')
-        fileRule.uses.clear()
-        fileRule
-            .test(/\.svg$/)
-            .exclude.add(path.resolve(__dirname, './src/icons'))
-            .end()
-            .use('file-loader')
-            .loader('file-loader')
+  chainWebpack: config => {
+    config.module.rules.delete("svg"); //重点:删除默认配置中处理svg,
+    config.module
+      .rule('svg-sprite-loader')
+      .test(/\.svg$/)
+      .include
+      .add(resolve('./src/icons')) //处理svg目录
+      .end()
+      .use('svg-sprite-loader')
+      .loader('svg-sprite-loader')
+      .options({
+        symbolId: 'icon-[name]'
+      })
+  },
+    configureWebpack:{
+        module: {
+            rules: [
+                {
+                    test: /\.mjs$/,
+                    include: /node_modules/,
+                    type: "javascript/auto"
+                },
+            ]
+        }
+    },
+    devServer: {
+        port: 8081
     }
 }
